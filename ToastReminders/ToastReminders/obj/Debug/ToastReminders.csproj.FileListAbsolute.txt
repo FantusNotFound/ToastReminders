@@ -1,0 +1,14 @@
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.csprojAssemblyReference.cache
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\MainWindow.g.cs
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\App.g.cs
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders_MarkupCompile.cache
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders_MarkupCompile.lref
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\ToastReminders.exe.config
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\ToastReminders.exe
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\ToastReminders.pdb
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\MainWindow.baml
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.g.resources
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.Properties.Resources.resources
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.csproj.GenerateResource.cache
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.exe
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.pdb
