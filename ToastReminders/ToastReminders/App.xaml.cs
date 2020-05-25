@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
+using System.Windows.Controls.Primitives;
 
 namespace ToastReminders
 {
@@ -29,13 +30,14 @@ namespace ToastReminders
             _notifyIcon.Visible = true;
 
             CreateContextMenu();
+            
         }
 
         private void CreateContextMenu()
         {
             _notifyIcon.ContextMenuStrip =
               new System.Windows.Forms.ContextMenuStrip();
-            _notifyIcon.ContextMenuStrip.Items.Add("Open Settings").Click += (s, e) => ShowMainWindow();
+            _notifyIcon.ContextMenuStrip.Items.Add("Add Reminder").Click += (s, e) => ShowMainWindow();
             _notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => ExitApplication();
         }
 
