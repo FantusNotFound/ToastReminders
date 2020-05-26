@@ -116,7 +116,7 @@ namespace ToastReminders
 		{
 			Application.Current.Dispatcher.Invoke((Action)delegate {
 				string message = "";
-				ToastTypes type = ToastTypes.Warning;
+				ToastTypes type = ToastTypes.Info;
 
 				Toaster toaster = new Toaster();
 				toaster.Show(title, message, type);
