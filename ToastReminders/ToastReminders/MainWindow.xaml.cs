@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PeanutButter.Toast;
 namespace ToastReminders
 {
 	/// <summary>
@@ -29,19 +29,11 @@ namespace ToastReminders
 
 		private void AddReminder_Click(object sender, RoutedEventArgs e)
 		{
-			AddNewReminder(ReminderTitle.Text);
+			App.AddNewReminder(ReminderTitle.Text, this);
 			CloseWindow();
 		}
 
-		void AddNewReminder(string text)
-		{
-			if (GetTime() == 0)
-				return;
-			Timer timer = new Timer(GetTime());
-			timer.Elapsed += (sender, e) => RemindUser(sender, e, text);
-			timer.AutoReset = false;
-			timer.Start();
-		}
+		
 
 		public int GetTime()
 		{
@@ -51,7 +43,7 @@ namespace ToastReminders
 			if (time == null || time == "" || time == Time.Tag.ToString())
 			{
 				MessageBox.Show("Failed to get time, make sure you entered a time");
-				return 0;
+				return 2;
 			}
 			try
 			{
@@ -66,21 +58,21 @@ namespace ToastReminders
 				int seconds = totalMinutes * 60;
 				int milliseconds = seconds * 1000;
 				Console.WriteLine(milliseconds);
+				if (milliseconds == 0)
+					milliseconds = 1;
+				
 				return milliseconds;
 			}
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.StackTrace);
 				MessageBox.Show("Failed to get time, make sure you entered a time and it is formatted correctly");
-				return 0;
+				return 2;
 			}
 			
 		}
 
-		void RemindUser(Object source, ElapsedEventArgs e, string title)
-		{
-
-		}
+		
 
 		private void Cancel_Click(object sender, RoutedEventArgs e)
 		{

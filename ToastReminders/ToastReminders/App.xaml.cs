@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls.Primitives;
+using PeanutButter.Toast;
+using System.Timers;
 
 namespace ToastReminders
 {
@@ -17,7 +19,6 @@ namespace ToastReminders
 	{
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -48,7 +49,23 @@ namespace ToastReminders
             _notifyIcon.Dispose();
             _notifyIcon = null;
         }
+        public static void AddNewReminder(string text, MainWindow mainWindow)
+        {
+            if (mainWindow.GetTime() == 2)
+                return;
+            Timer timer = new Timer(mainWindow.GetTime());
+            timer.Elapsed += (sender, e) => RemindUser(sender, e, text);
+            timer.AutoReset = false;
+            timer.Start();
+        }
+        static void RemindUser(Object source, ElapsedEventArgs e, string title)
+        {
+            string message = "This is a test";
+            ToastTypes type = ToastTypes.Info;
 
+            Toaster toaster = new Toaster();
+            toaster.Show(title, message, type);
+        }
         private void ShowMainWindow()
         {
             if (MainWindow.IsVisible)

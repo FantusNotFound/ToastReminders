@@ -12,3 +12,6 @@ D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\Toast
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.csproj.GenerateResource.cache
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.exe
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.pdb
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\ToastReminders.csproj.CopyComplete
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\PeanutButter.Toast.dll
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\PeanutButter.Toast.pdb
