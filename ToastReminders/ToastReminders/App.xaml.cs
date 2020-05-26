@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.Windows.Controls.Primitives;
+using PeanutButter.Toast;
+using System.Timers;
 
 namespace ToastReminders
 {
@@ -17,7 +19,6 @@ namespace ToastReminders
 	{
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -48,7 +49,7 @@ namespace ToastReminders
             _notifyIcon.Dispose();
             _notifyIcon = null;
         }
-
+        
         private void ShowMainWindow()
         {
             if (MainWindow.IsVisible)
