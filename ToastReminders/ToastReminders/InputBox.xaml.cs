@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,39 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit;
 
 namespace ToastReminders
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for InputBox.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class InputBox : Window
 	{
-		public MainWindow()
+		public string text 
+		{
+			get
+			{
+				return ReminderTitle.Text;
+			}
+		}
+		public InputBox()
 		{
 			InitializeComponent();
-		}
-
-		private void AddReminder_Click(object sender, RoutedEventArgs e)
-		{
-			AddNewReminder(ReminderTitle.Text);
-			CloseWindow();
-		}
-		
-
-		private void Cancel_Click(object sender, RoutedEventArgs e)
-		{
-			CloseWindow();
-		}
-
-		private void CloseWindow()
-		{
-			TimePicker.Value = null;
-			ReminderTitle.Text = ReminderTitle.Tag.ToString();
-			Application.Current.MainWindow.Close();
 		}
 
 		private void TextLostFocus(object sender, RoutedEventArgs e)
@@ -72,17 +56,10 @@ namespace ToastReminders
 				textBox.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 			}
 		}
-		public void AddNewReminder(string text)
+		private void AddReminder_Click(object sender, RoutedEventArgs e)
 		{
-			if (TimePicker.Value.HasValue)
-			{
-				App.Reminder reminder = new App.Reminder(TimePicker.Value, text);
-				App.reminders.Add(reminder);
-			}
-			
+			Window.GetWindow(this).DialogResult = true;
+			this.Close();
 		}
-		
-		
-		
 	}
 }

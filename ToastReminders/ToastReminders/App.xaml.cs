@@ -9,6 +9,10 @@ using System.ComponentModel;
 using System.Windows.Controls.Primitives;
 using PeanutButter.Toast;
 using System.Timers;
+using System.Windows.Forms;
+using Application = System.Windows.Application;
+using Timer = System.Timers.Timer;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ToastReminders
 {
@@ -25,13 +29,14 @@ namespace ToastReminders
             MainWindow = new MainWindow();
             MainWindow.Closing += MainWindow_Closing;
 
-            _notifyIcon = new System.Windows.Forms.NotifyIcon();
+            _notifyIcon = new NotifyIcon();
             _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
             _notifyIcon.Icon = ToastReminders.Properties.Resources.ToastIcon;
+            _notifyIcon.Text = "Toast Reminders";
             _notifyIcon.Visible = true;
 
             CreateContextMenu();
-            Timer timer = new Timer(10000);
+            Timer timer = new Timer(5000);
             timer.Elapsed += (sender, f) => Update(sender, f);
             timer.AutoReset = true;
             timer.Start();
@@ -75,32 +80,73 @@ namespace ToastReminders
         private void CreateContextMenu()
         {
             _notifyIcon.ContextMenuStrip =
-              new System.Windows.Forms.ContextMenuStrip();
+              new ContextMenuStrip();
             _notifyIcon.ContextMenuStrip.Items.Add("Add Reminder").Click += (s, e) => ShowMainWindow();
+            ToolStripItem dropdown = _notifyIcon.ContextMenuStrip.Items.Add("Add Quick Reminder", null);
+            ToolStripItemCollection dropdownItem = (dropdown as ToolStripMenuItem).DropDownItems;
+            dropdownItem.Add("5 minutes").Click += (s, e) => QuickNotification(5);
+            dropdownItem.Add("10 minutes").Click += (s, e) => QuickNotification(10);
+            dropdownItem.Add("15 minutes").Click += (s, e) => QuickNotification(15);
+            dropdownItem.Add("20 minutes").Click += (s, e) => QuickNotification(20);
+            dropdownItem.Add("30 minutes").Click += (s, e) => QuickNotification(30);
+            dropdownItem.Add("45 minutes").Click += (s, e) => QuickNotification(45);
+            dropdownItem.Add("1 hour").Click += (s, e) => QuickNotification(60);
+            dropdownItem.Add("2 hours").Click += (s, e) => QuickNotification(120);
+            _notifyIcon.ContextMenuStrip.Items.Add("Settings").Click += (s, e) => ShowSettings();
             _notifyIcon.ContextMenuStrip.Items.Add("Exit").Click += (s, e) => ExitApplication();
         }
-
+        void ShowSettings()
+        {
+            Window window = new Settings();
+            if (window.IsVisible)
+            {
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.WindowState = WindowState.Normal;
+                }
+                window.Activate();
+            }
+            else
+            {
+                window.Show();
+            }
+        }
+        void QuickNotification(int time)
+        {
+            var w = new InputBox();
+            string title = "";
+            if (w.ShowDialog() == true)
+            {
+                title = w.text;
+            }
+            // Calculate Time
+            DateTime timer = DateTime.Now.AddMinutes(time);
+            Reminder reminder = new Reminder(timer, title);
+            reminders.Add(reminder);
+        }
         private void ExitApplication()
         {
             _isExit = true;
             MainWindow.Close();
             _notifyIcon.Dispose();
             _notifyIcon = null;
+            Application.Current.Shutdown();
         }
         
         private void ShowMainWindow()
         {
-            if (MainWindow.IsVisible)
+            Window window = new MainWindow();
+            if (window.IsVisible)
             {
-                if (MainWindow.WindowState == WindowState.Minimized)
+                if (window.WindowState == WindowState.Minimized)
                 {
-                    MainWindow.WindowState = WindowState.Normal;
+                    window.WindowState = WindowState.Normal;
                 }
-                MainWindow.Activate();
+                window.Activate();
             }
             else
             {
-                MainWindow.Show();
+                window.Show();
             }
         }
 
