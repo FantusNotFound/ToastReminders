@@ -14,7 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PeanutButter.Toast;
+using Xceed.Wpf.Toolkit;
+
 namespace ToastReminders
 {
 	/// <summary>
@@ -29,49 +30,9 @@ namespace ToastReminders
 
 		private void AddReminder_Click(object sender, RoutedEventArgs e)
 		{
-			AddNewReminder(ReminderTitle.Text, this);
+			AddNewReminder(ReminderTitle.Text);
 			CloseWindow();
 		}
-
-		
-
-		public int GetTime()
-		{
-			//[0-9]+h
-			string time = Time.Text;
-
-			if (time == null || time == "" || time == Time.Tag.ToString())
-			{
-				MessageBox.Show("Failed to get time, make sure you entered a time");
-				return 2;
-			}
-			try
-			{
-				if (!Regex.IsMatch(time, "[0-9]+h") || !Regex.IsMatch(time, "[0-9]+m"))
-					throw new FormatException();
-				string minStr = Regex.Replace(time, "[0-9]+h", "");
-				string hourStr = Regex.Replace(time, "[0-9]+m", "");
-				int.TryParse(minStr.Remove(minStr.Length - 1), out int minutes);
-				int.TryParse(hourStr.Remove(hourStr.Length - 1), out int hours);
-
-				int totalMinutes = minutes + (hours * 60);
-				int seconds = totalMinutes * 60;
-				int milliseconds = seconds * 1000;
-				Console.WriteLine(milliseconds);
-				if (milliseconds == 0)
-					milliseconds = 1;
-				
-				return milliseconds;
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.StackTrace);
-				MessageBox.Show("Failed to get time, make sure you entered a time and it is formatted correctly");
-				return 2;
-			}
-			
-		}
-
 		
 
 		private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -81,7 +42,7 @@ namespace ToastReminders
 
 		private void CloseWindow()
 		{
-			Time.Text = Time.Tag.ToString();
+			TimePicker.Value = null;
 			ReminderTitle.Text = ReminderTitle.Tag.ToString();
 			Application.Current.MainWindow.Close();
 		}
@@ -103,26 +64,16 @@ namespace ToastReminders
 				textBox.Foreground = new SolidColorBrush(Color.FromRgb(150, 150, 150));
 			}
 		}
-		public void AddNewReminder(string text, MainWindow mainWindow)
+		public void AddNewReminder(string text)
 		{
-			if (mainWindow.GetTime() == 2)
-				return;
-			Timer timer = new Timer(mainWindow.GetTime());
-			timer.Elapsed += (sender, e) => RemindUser(sender, e, text);
-			timer.AutoReset = false;
-			timer.Start();
-		}
-		static void RemindUser(Object source, ElapsedEventArgs e, string title)
-		{
-			Application.Current.Dispatcher.Invoke((Action)delegate {
-				string message = "Reminder:";
-				ToastTypes type = ToastTypes.Info;
-
-				Toaster toaster = new Toaster();
-				toaster.Show(message, title, type);
-			});
+			if (TimePicker.Value.HasValue)
+			{
+				App.Reminder reminder = new App.Reminder(TimePicker.Value, text);
+				App.reminders.Add(reminder);
+			}
 			
 		}
+		
 		void FocusGained(TextBox textBox)
 		{
 			if (textBox.Text == textBox.Tag.ToString())

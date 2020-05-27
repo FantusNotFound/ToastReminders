@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ToastReminders"
         mc:Ignorable="d"
         Title="MainWindow" Height="325" Width="225">
     <Grid>
-        <TextBox x:Name="Time" HorizontalAlignment="Center" Height="30" Margin="0,60,0,0" TextWrapping="NoWrap" Text="Reminder time" VerticalAlignment="Top" Width="175" ToolTip="Format: ##h##m (##hours ##minutes)" FontSize="15" GotFocus="TextGotFocus" LostFocus="TextLostFocus" Tag="Reminder time" Foreground="Gray" FontFamily="Segoe UI Semibold"/>
+        
         <TextBox x:Name="ReminderTitle" HorizontalAlignment="Center" Height="30" Margin="0,100,0,0" TextWrapping="NoWrap" Text="Reminder title" VerticalAlignment="Top" Width="175" FontSize="15" FontFamily="Segoe UI Semibold" Foreground="Gray" Tag="Reminder title" GotFocus="TextGotFocus" LostFocus="TextLostFocus"/>
         <Label x:Name="Title" Content="Add a reminder" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="20"/>
         <Button x:Name="AddReminder" Content="Add Reminder" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="AddReminder_Click" FontSize="15" FontFamily="Segoe UI Semibold"/>
@@ -17,5 +18,6 @@
                 <Label Content="Test" />
             </Grid>
         </Popup>
+        <xctk:DateTimePicker Name="TimePicker" HorizontalAlignment="Center" Margin="0, 60, 0, 0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Segoe UI Semibold" FontSize="15"/>
     </Grid>
 </Window>

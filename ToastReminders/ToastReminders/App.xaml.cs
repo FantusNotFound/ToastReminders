@@ -31,7 +31,45 @@ namespace ToastReminders
             _notifyIcon.Visible = true;
 
             CreateContextMenu();
-            
+            Timer timer = new Timer(10000);
+            timer.Elapsed += (sender, f) => Update(sender, f);
+            timer.AutoReset = true;
+            timer.Start();
+        }
+        public void Update(Object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine($"Tracking {reminders.Count} reminders");
+            foreach (Reminder reminder in reminders.ToArray())
+            {
+                if (reminder.time <= DateTime.Now)
+                {
+                    RemindUser(reminder.title);
+                    reminders.Remove(reminder);
+                }
+            }
+        }
+
+        public static void RemindUser(string title)
+        {
+            Application.Current.Dispatcher.Invoke((Action)delegate {
+                string message = "Reminder:";
+                ToastTypes type = ToastTypes.Info;
+
+                Toaster toaster = new Toaster();
+                toaster.Show(message, title, type);
+            });
+
+        }
+        public static List<Reminder> reminders = new List<Reminder>();
+        public struct Reminder
+        {
+            public DateTime? time;
+            public string title;
+            public Reminder(DateTime? _time, string _title)
+            {
+                time = _time;
+                title = _title;
+            }
         }
 
         private void CreateContextMenu()
