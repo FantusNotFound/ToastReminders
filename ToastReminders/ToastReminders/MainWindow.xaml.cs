@@ -115,11 +115,11 @@ namespace ToastReminders
 		static void RemindUser(Object source, ElapsedEventArgs e, string title)
 		{
 			Application.Current.Dispatcher.Invoke((Action)delegate {
-				string message = "";
+				string message = "Reminder:";
 				ToastTypes type = ToastTypes.Info;
 
 				Toaster toaster = new Toaster();
-				toaster.Show(title, message, type);
+				toaster.Show(message, title, type);
 			});
 			
 		}
