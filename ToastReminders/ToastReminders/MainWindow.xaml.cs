@@ -44,7 +44,7 @@ namespace ToastReminders
 		{
 			TimePicker.Value = null;
 			ReminderTitle.Text = ReminderTitle.Tag.ToString();
-			Application.Current.MainWindow.Close();
+			this.Close();
 		}
 
 		private void TextLostFocus(object sender, RoutedEventArgs e)

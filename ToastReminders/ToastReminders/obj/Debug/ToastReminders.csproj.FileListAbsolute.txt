@@ -65,3 +65,6 @@ D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\sv\Xc
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\InputBox.g.cs
 D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\InputBox.baml
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\Settings.g.cs
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\General\Projects\ToastReminders\ToastReminders\ToastReminders\obj\Debug\Settings.baml

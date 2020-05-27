@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:ToastReminders"
         mc:Ignorable="d"
-        Title="MainWindow" Height="325" Width="225">
+        Title="Add a Reminder" Height="325" Width="225" ResizeMode="NoResize">
     <Grid>
         
         <TextBox x:Name="ReminderTitle" HorizontalAlignment="Center" Height="30" Margin="0,100,0,0" TextWrapping="NoWrap" Text="Reminder title" VerticalAlignment="Top" Width="175" FontSize="15" FontFamily="Segoe UI Semibold" Foreground="Gray" Tag="Reminder title" GotFocus="TextGotFocus" LostFocus="TextLostFocus"/>
@@ -18,6 +18,6 @@
                 <Label Content="Test" />
             </Grid>
         </Popup>
-        <xctk:DateTimePicker Name="TimePicker" HorizontalAlignment="Center" Margin="0, 60, 0, 0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Segoe UI Semibold" FontSize="15"/>
+        <xctk:DateTimePicker Name="TimePicker" Format="Custom" TimeFormat="Custom" TimeFormatString=" hh:mm tt" ToolTip="dd/MM/yyyy hh:mm tt" FormatString="dd/MM/yyyy  hh:mm tt" HorizontalAlignment="Center" Margin="0, 60, 0, 0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Segoe UI Semibold" FontSize="15"/>
     </Grid>
 </Window>

@@ -58,12 +58,10 @@ namespace ToastReminders
         {
             Application.Current.Dispatcher.Invoke((Action)delegate {
                 string message = "Reminder:";
-                ToastTypes type = ToastTypes.Info;
 
                 Toaster toaster = new Toaster();
-                toaster.Show(message, title, type);
+                toaster.Show(message, title, (ToastTypes)ToastReminders.Properties.Settings.Default["ToastType"], (TimeSpan)ToastReminders.Properties.Settings.Default["DisplayTime"]);
             });
-
         }
         public static List<Reminder> reminders = new List<Reminder>();
         public struct Reminder
@@ -126,6 +124,7 @@ namespace ToastReminders
         }
         private void ExitApplication()
         {
+            ToastReminders.Properties.Settings.Default.Save();
             _isExit = true;
             MainWindow.Close();
             _notifyIcon.Dispose();

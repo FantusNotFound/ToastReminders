@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToastReminders"
         mc:Ignorable="d"
-        Title="Settings" Height="450" Width="800">
+        Title="Settings" Height="300" Width="250" ResizeMode="NoResize">
     <Grid>
+        <TextBox x:Name="DisplayTime" HorizontalAlignment="Center" Height="30" Margin="0,25,0,0" TextWrapping="NoWrap" Text="####" VerticalAlignment="Top" Width="175" FontSize="15" FontFamily="Segoe UI Semibold" Tag="Toast Display Time" ToolTip="Seconds" PreviewTextInput="DisplayTime_PreviewTextInput"/>
+        <Button x:Name="Save" Content="Save" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="Save_Click" FontSize="15" FontFamily="Segoe UI Semibold"/>
+        <Button x:Name="Close" Content="Close" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="Cancel_Click" FontSize="15" FontFamily="Segoe UI Semibold"/>
         
+        <ComboBox x:Name="ToastType" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="175" Height="30" FontFamily="Segoe UI Semibold" FontSize="15">
+            <ComboBoxItem Name="Burnt" Content="Burnt"/>
+            <ComboBoxItem Name="Bread" Content="Bread"/>
+            <ComboBoxItem Name="Toasted" Content="Toasted"/>
+            <ComboBoxItem Name="Crispy" Content="Crispy"/>
+        </ComboBox>
+        <Label Content="Toast Type:" HorizontalAlignment="Center" Margin="-90,70,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="15"/>
+        <Label Content="Display Time:" HorizontalAlignment="Center" Margin="-80,-2.5,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="15"/>
     </Grid>
 </Window>
